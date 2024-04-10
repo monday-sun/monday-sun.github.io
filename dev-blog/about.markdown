@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Welcome to Humans Build Software, where I, Monday, share insights and experiences from my journey in software development. With a background in fixing tech debt and a passion for improving software construction, this blog is a platform for exploring how to improve development practices in a way that respects our brains' tendency to make mistakes.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+From Amazon to Tableau, Apple to Mode Analytics, I've worked with various engineers at different stages of developing their practices. I take pride in helping others turn "sounds good in theory" practices into a daily reality. Through this blog, I aim to create a community where we can learn from each other's experiences and grow as software professionals.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Whether you're interested in development processes, refactoring, testing, wrangling tech debt, or want to dive into software construction, Humans Build Software has something for you. Join me as we navigate the software development challenges and discover the human side of coding.
