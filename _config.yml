@@ -20,7 +20,7 @@
 
 source: ./dev-blog
 
-title: People Build Software
+title: Humans Build Software
 email: monday.romelfanger@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A development practices blog centered around people, the mistakes we make, and how to avoid or recover from them.
