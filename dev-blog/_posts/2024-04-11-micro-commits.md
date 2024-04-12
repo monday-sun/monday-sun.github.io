@@ -2,6 +2,7 @@
 title: "Micro-commits"
 date: 2024-04-11 16:19:00 -0700
 categories: development process
+toc: true
 ---
 
 # What mistake are we solving?
