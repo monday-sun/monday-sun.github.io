@@ -1,7 +1,9 @@
 ---
 title: "Micro-commits"
-date: 2024-04-11 16:19:00 -0700
-categories: development process
+author: Monday Romelfanger
+last_modified_at: 2024-04-12 02:04:25 -0700
+categories: development-process
+excerpt: "Micro-commits is a development process aimed at releaving your brain from holding onto so much information, with a ton of side benefits. At its core, it's easy to describe: make the absolute smallest decisions and commit to them (for now)."
 toc: true
 ---
 
