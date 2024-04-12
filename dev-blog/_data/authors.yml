@@ -1,17 +1,14 @@
 Monday Romelfanger:
   name: "Monday Romelfanger"
-  pronouns: they/them/theirs
   avatar: "https://avatars.githubusercontent.com/u/2709347"
-  bio: "Pronouns: they/them/theirs"
+  bio: ""
+  pronouns: they/them
   location: "CA, USA"
-  email:
+  email: "humans.build.software@gmail.com"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/monday-sun"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:humans.build.software@gmail.com"
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   # url: "https://your-website.com"
