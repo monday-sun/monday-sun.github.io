@@ -72,7 +72,7 @@ These are the prefixes I use, but often see others mix up MANUAL, RISKY, and FEA
 
 ## Do you always make commits this small?
 
-Yes, but it took some time to adopt this process. Now I do it without even thinking.
+Yes, but it took some time to adopt this process. Now it's harder to not do it -- I'm even doing it while [setting up this blog](https://github.com/monday-sun/monday-sun.github.io/pull/12/commits).
 
 ## Do you really throw away and redo work?
 
@@ -98,6 +98,4 @@ If you need to keep following the same thread, or another that overlaps with the
 
 # Credit
 
-This process was taught to me originally as part of Arlo Belshee's [Read-by-Refactoring](https://arlobelshee.com/the-core-6-refactorings/) class at Tableau Software
-
-# Related
+This process was taught to me originally as part of Arlo Belshee's [Read-by-Refactoring](https://arlobelshee.com/the-core-6-refactorings/) class at Tableau Software.
