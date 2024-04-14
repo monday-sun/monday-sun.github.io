@@ -1,11 +1,9 @@
 ---
-title: "Micro-commits"
+title: "Micro-Commits"
+description: "Commit and forget"
 author: Monday Romelfanger
-last_modified_at: 2024-04-13 16:53:39 -0700
 categories: micro-commits
-tags: [development-process]
-excerpt: "Commit and forget"
-toc: true
+tags: [development-process, micro-commits]
 ---
 
 # Problem
@@ -58,15 +56,15 @@ Because you're committing frequently, it's best to have a set of prefixes that y
 
 These are the prefixes I use, but often see others mix up MANUAL, RISKY, and FEATURE. Find a set that makes sense for you.
 
-| Prefix   | Meaning                                                                                                                                                                  | Example                                            |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- |
-| COMMENT: | I only changed comment/white space                                                                                                                                       | COMMENT: updated comment on MyClass                |
-| TEST:    | I only changed or added a test                                                                                                                                           | TEST: added missing test for MyClass               |
-| TOOL:    | I used a tool to do this task. This includes renames and file moves done with IDE tools, especially if a compiler will validate it. If appropriate, include the command. | TOOL: nx g library my-new-lib                      |
-| MANUAL:  | I followed a [safe refactoring technique](https://refactoring.guru/refactoring/catalog) to make this change.                                                             | MANUAL: moved someMethod to new class              |
-| RISKY:   | I did not follow a safe refactoring technique, but I believe this should have no behavior change                                                                         | RISKY: moved registration from ModuleA to Module B |
-| OOPS:    | I made a mistake previously that I need to fix                                                                                                                           | OOPS: fix incorrect import                         |
-| FEATURE: | I changed the behavior to do something new                                                                                                                               | FEATURE: implemented someNewBahavior               |
+| Prefix   | Meaning                                                                                                                                                                          | Example                                            |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| COMMENT: | I only changed comment/white space                                                                                                                                               | COMMENT: updated comment on MyClass                |
+| TEST:    | I only changed or added a test                                                                                                                                                   | TEST: added missing test for MyClass               |
+| TOOL:    | I used a tool to do this task. This includes renames<br/>and file moves done with IDE tools, especially if a compiler will<br/>validate it. If appropriate, include the command. | TOOL: nx g library my-new-lib                      |
+| MANUAL:  | I followed a [safe refactoring technique](https://refactoring.guru/refactoring/catalog) to make this change.                                                                     | MANUAL: moved someMethod to new class              |
+| RISKY:   | I did not follow a safe refactoring technique,<br/>but I believe this should have no behavior change                                                                             | RISKY: moved registration from ModuleA to Module B |
+| OOPS:    | I made a mistake previously that I need to fix                                                                                                                                   | OOPS: fix incorrect import                         |
+| FEATURE: | I changed the behavior to do something new                                                                                                                                       | FEATURE: implemented someNewBahavior               |
 
 # FAQ
 

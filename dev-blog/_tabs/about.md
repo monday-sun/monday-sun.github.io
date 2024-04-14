@@ -1,6 +1,7 @@
 ---
-title: About
-permalink: /about/
+# the default layout is 'page'
+icon: fas fa-info-circle
+order: 4
 ---
 
 Welcome to Humans Build Software, where I, Monday, share insights and experiences from my journey in software development. With a background in fixing tech debt and a passion for improving software construction, this blog is a platform for exploring how to improve development practices in a way that respects our brains' tendency to make mistakes.
