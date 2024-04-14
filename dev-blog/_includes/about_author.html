@@ -1,0 +1,28 @@
+<!-- Author Include Start -->
+<div class="author-container">
+  <div class="author-details">
+    <h3>{{ include.author.name }}</h3>
+    <div class="author-avatar">
+      <img
+        src="{{- include.author.avatar -}}"
+        width="112"
+        height="112"
+        alt="Avatar of {{ include.author.name }}"
+        onerror="this.style.display='none'"
+      />
+      <p><strong>Pronouns:</strong> {{ include.author.pronouns }}</p>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:{{ include.author.email }}"
+          >{{ include.author.email }}</a
+        >
+      </p>
+      <p>
+        <strong>LinkedIn:</strong>
+        <a href="{{ include.author.url }}" target="_blank">Profile</a>
+      </p>
+      <p>{{ include.author.bio }}</p>
+    </div>
+  </div>
+</div>
+<!-- Author Include End -->
