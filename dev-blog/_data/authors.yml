@@ -4,4 +4,14 @@ Monday Romelfanger:
   bio: ""
   pronouns: they/them
   email: "humans.build.software@gmail.com"
-  url: https://www.linkedin.com/in/monday-romelfanger-3893652b/"
+  url: https://www.linkedin.com/in/monday-romelfanger-3893652b/
+  links:
+    - type: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/monday-sun"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: https://www.linkedin.com/in/monday-romelfanger-3893652b/
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:monday.romelfanger@gmail.com"
