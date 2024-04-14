@@ -1,10 +1,10 @@
 ---
 title: "Micro-Commits"
+description: "Commit and forget"
 author: Monday Romelfanger
 last_modified_at: 2024-04-13 16:53:39 -0700
 categories: micro-commits
 tags: [development-process, micro-commits]
-excerpt: "Commit and forget"
 ---
 
 # Problem
