@@ -1,0 +1,94 @@
+---
+---
+
+@import "main";
+@import "addon/module";
+
+// Copied from https://github.com/cotes2020/jekyll-theme-chirpy/blob/bf16d6039ad8e6f9698c45b924725368a1d9d79d/_sass/addon/commons.scss#L704
+// to maintain same look as sidebar
+.author-container {
+  @include pl-pr(0);
+
+  z-index: 99;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border-color);
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  %author-links {
+    color: var(--sidebar-muted-color);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  %author-link-hover {
+    &:hover {
+      color: var(--sidebar-active-color);
+    }
+  }
+
+  .author-avatar {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    overflow: hidden;
+    box-shadow: var(--avatar-border-color) 0 0 0 2px;
+    transform: translateZ(0); /* fixed the zoom in Safari */
+
+    img {
+      transition: transform 0.5s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .author-links {
+    padding-right: 1rem;
+    margin-bottom: 1.5rem;
+
+    $btn-size: 1.75rem;
+
+    %button {
+      width: $btn-size;
+      height: $btn-size;
+      margin-bottom: $btn-mb; // multi line gap
+      border-radius: 50%;
+      color: var(--sidebar-btn-color);
+      background-color: var(--sidebar-btn-bg);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--sidebar-border-color) 0 0 0 1px;
+
+      &:hover {
+        background-color: var(--sidebar-hover-bg);
+      }
+    }
+
+    a {
+      @extend %button;
+      @extend %author-link-hover;
+      @extend %clickable-transition;
+
+      &:not(:last-child) {
+        margin-right: $sb-btn-gap;
+      }
+    }
+
+    i {
+      line-height: $btn-size;
+    }
+  }
+}
