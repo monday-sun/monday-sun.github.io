@@ -3,9 +3,9 @@
 - type: github
   icon: "fab fa-github"
 
-- type: linkedin
-  icon: "fab fa-linkedin" # icons powered by <https://fontawesome.com/>
-  url: "https://www.linkedin.com/in/monday-romelfanger-3893652b/" # Fill with your Linkedin homepage
+- type: link
+  icon: "fas fa-mug-hot"
+  url: "https://buymeacoffee.com/humans.build.software"
 
 - type: email
   icon: "fas fa-envelope"

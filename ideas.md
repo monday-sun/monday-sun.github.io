@@ -1,8 +1,21 @@
 
-# Binary search for mistakes
-
-# Self Documenting decisions
-
-# Lifelines
-
-# Incremental review
+- Micro-commits
+  - Binary search for mistakes
+  - Self Documenting decisions
+  - The freedom of throwing away work
+  - Incremental review
+- Contract driven development
+  - Contract testing
+  - Contracts + performance
+  - Fakes instead of mocks
+  - Simplifying quality with CDD
+- Release flags
+  - Factories, Contracts
+- Reactive programming
+- AI
+  - automate quality
+  - humans still doing the engineering, ai writes code
+- Alternate media
+  - videos
+  - twitch
+  - guided coding?
