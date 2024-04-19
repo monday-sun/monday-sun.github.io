@@ -5,5 +5,10 @@
   "main": "index.js",
   "repository": "git@github.com:monday-sun/monday-sun.github.io.git",
   "author": "Monday Romelfanger <monday.romelfanger@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@nx/angular": "^18.3.2",
+    "@nx/js": "^18.3.2",
+    "@nx/workspace": "^18.3.2"
+  }
 }
