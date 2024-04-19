@@ -1,0 +1,9 @@
+{
+  "name": "monday-sun.github.io",
+  "version": "1.0.0",
+  "description": "Humans Build Software",
+  "main": "index.js",
+  "repository": "git@github.com:monday-sun/monday-sun.github.io.git",
+  "author": "Monday Romelfanger <monday.romelfanger@gmail.com>",
+  "license": "MIT"
+}
