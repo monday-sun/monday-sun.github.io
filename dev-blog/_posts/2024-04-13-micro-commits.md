@@ -1,11 +1,13 @@
 ---
-title: "Micro-Commits"
-description: "Commit and forget"
+title: Micro-Commits
+description: Commit and forget
 author: Monday Romelfanger
 categories: micro-commits
-tags: [development-process, micro-commits]
+tags:
+  - development-process
+  - micro-commits
+last_modified_at: '2024-04-13T18:32:18-07:00'
 ---
-
 # Problem
 
 As software engineers, we expect too much from our brains. We expect to be able to hold onto enough context to make new features, without breaking existing ones, rarely with enough test coverage to make sure we didn't break something. Our brains don't have as much [working capacity](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) as we'd like to believe.

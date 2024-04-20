@@ -1,10 +1,7 @@
 #!/bin/sh
 
-# navigate to the directory where your script is located
-cd ../../libs/node-tools/src/lib/update-last-modified
-
 # run your script
-ts-node update-last-modified.ts
+ts-node libs/node-tools/src/lib/update-last-modified/update-last-modified.ts
 
 # add changes made by the script to the commit
 git add ./dev-blog/_posts
