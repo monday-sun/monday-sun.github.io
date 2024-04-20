@@ -25,13 +25,16 @@ export class Post {
   getFrontMatter(): FrontMatter {
     return this.frontMatter;
   }
-
-  addFrontMatter(key: string, value: any): void {
-    this.frontMatter[key] = value;
+  getFilePath(): string {
+    return this.filePath;
   }
 
   getContent(): Content {
     return this.content;
+  }
+
+  addFrontMatter(key: string, value: any): void {
+    this.frontMatter[key] = value;
   }
 
   save(): void {
