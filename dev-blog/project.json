@@ -19,6 +19,12 @@
         "command": "bundle exec jekyll build --baseurl https://monday-sun.github.io"
       }
     },
+    "serve-drafts": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bundle exec jekyll serve --drafts"
+      }
+    },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
