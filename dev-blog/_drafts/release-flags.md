@@ -38,9 +38,8 @@ The release flag values must be able to be changed independent of the deployment
 
 First, add your release flag. Set the default value to the 'off' value (usually false).
 
-#### On/Off vs. true/false
-
-For Release Flags, LaunchDarkly has both On/Off and `Available (true)` / `Unavailable (false)`. By default, they create these flags with `On` -> `Available` and `Off` -> `Unavailable`. It is common for people to get tripped up when turning a LaunchDarkly flag on for the first time because you rarely want to turn it on for all users at once, and adding additional context does not automatically change the `On` default to `Unavabile`. When creating a flag you should set `On` -> `Unavailable` (and you can change the default in the project settings to `Unavailable`).
+> For Release Flags, LaunchDarkly has both On/Off and `Available (true)` / `Unavailable (false)`. By default, they create these flags with `On` -> `Available` and `Off` -> `Unavailable`. It is common for people to get tripped up when turning a LaunchDarkly flag on for the first time because you rarely want to turn it on for all users at once, and adding additional context does not automatically change the `On` default to `Unavabile`. When creating a flag you should set `On` -> `Unavailable` (and you can change the default in the project settings to `Unavailable`).
+{: .prompt-warning }
 
 ### 2. Create a Code Branch
 
