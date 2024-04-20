@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 
@@ -31,6 +32,12 @@ export class Post {
 
   getContent(): Content {
     return this.content;
+  }
+
+  getLastModifiedTime(): string {
+    const command = `git log -1 --format=%aI -- ${this.filePath}`;
+    const lastModifiedTime = execSync(command, { encoding: 'utf-8' }).trim();
+    return lastModifiedTime;
   }
 
   addFrontMatter(key: string, value: any): void {
