@@ -6,7 +6,7 @@ categories: micro-commits
 tags:
   - development-process
   - micro-commits
-last_modified_at: '2024-04-13T18:32:18-07:00'
+last_modified_at: '2024-04-20T00:08:59-07:00'
 ---
 
 ## Problem

@@ -14,7 +14,7 @@ export function updatePostsLastModified(fileList: string[]): void {
 function getPosts(fileList: string[]): Post[] {
   return fileList
     .filter((filePath) => filePath.includes('dev-blog/_posts'))
-    .map((filePath) => Post.parse(`../../../../../${filePath}`));
+    .map((filePath) => Post.parse(filePath));
 }
 
 if (require.main === module) {
