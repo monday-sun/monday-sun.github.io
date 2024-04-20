@@ -18,7 +18,7 @@ Release flags are a primary tool for **recovering** from mistakes. They are temp
 
 ### Context
 
-When rolling out a release flag, you'll want to be able to enable/disable the flag for different subsets of users at different phases. Ideally, each user will have a unique ID, and then additional context, like email, environment, organization, etc. can be added. This allows you to enable it for progressively larger groups, such as yourself, then internal users, then external users. For more complex rollouts like percentage-based rollouts, the unique ID helps maintain a consistent experience for a single user.
+When rolling out a release flag, you'll want to be able to enable/disable the flag for different subsets of users at different phases. Ideally, each user will have a unique ID, and then additional context, like email, environment, organization, etc. can be added. This allows you to enable it for progressively larger groups. For more complex rollouts like percentage-based rollouts, the unique ID helps maintain a consistent experience for a single user.
 
 ### Context + Key -> Value Map
 
@@ -94,26 +94,136 @@ export class FeatureDialogComponent {
 }
 ```
 
-Many developers will go straight to the `Component` they want to change. 
+Many developers will go straight to the `Component` they want to change.
 
-```
+```typescript
 @Component({
   template: `
   <div>
-    <div [ngIf]="addNewField$ | async"></div>
+    <div [ngIf]="addNewField"></div>
     <!-- existing fields -->
   </div>`
 })
 export class FeatureDialogComponent {
-    let addNewField$ = of(false);
+    let addNewField$ = false;
 
     constructor(featureFlags: FeatureFlagService) {
         // some setup
-        this.addNewField$ = featureFlags.get(`temp-2024.04-jira-abc-123-cool-new-feature`)
+        this.addNewField = featureFlags.get(`temp-2024.04-jira-abc-123-cool-new-feature`);
     }
 
     onSubmit() {
-        // existing submit
+        if(this.addNewField) {
+          // new submit
+        }
+        else {
+          // existing submit
+        }
     }
 }
 ```
+
+As you can see, even with this simple task, we're adding multiple `if` statements, and have no room to make quality-of-life improvements to this dialog without adding more. Additionally, this creates more opportunities for mistakes to creep in while removing a release flag. Instead, we should move the feature flag handling up to the call stack to a more useful location.
+
+```typescript
+abstract class FeatureDialog {
+  abstract open();
+}
+
+@NgModule({
+  providers: [
+    {
+      provide: FeatureDialog,
+      useFactory: (featureFlagService: FeatureFlagService) =>
+        featureFlagService.get(`temp-2024.04-jira-abc-123-cool-new-feature`)
+          ? new FeatureDialogService()
+          : new OldDialogService(),
+      deps: [FeatureFlagService],
+    },
+  ],
+})
+export class FeatureDialogModule {}
+
+@Component({
+  template: `...`,
+})
+// Copied from FeatureDialogComponent
+export class OldFeatureDialogComponent {}
+
+@Injectable()
+// Copied from FeatureDialogService
+class OldFeatureDialogService implements FeatureDialog {
+  open() {
+    // Open OldFeatureDialogComponent
+  }
+}
+
+@Component({
+  template: `...`,
+})
+export class FeatureDialogComponent {}
+
+@Injectable()
+class FeatureDialogService implements FeatureDialog {
+  open() {
+    // Open FeatureDialogComponent
+  }
+}
+```
+
+In this setup, we're free to completely change `FeatureDialogComponent` and its supporting `FeatureDialogService` however we see fit. Creating a code branch should create this level of safety for exploration and refactoring.
+
+Conversely, you can also make a release flag scope too large and too long-lived and make it difficult to merge other ongoing feature development. Keep your releases focused and remove old code branches.
+
+## Prepare for Deletion
+
+Sometimes in the process of adding a new feature, we will make other code obsolete. If you notice code that should be deleted after the feature is complete, consider wrapping it in a release flag too. This will make it clearer to whoever is deleting the flag that the code should be deleted and helps ensure it actually can be deleted.
+
+## Rollout
+
+When your feature is ready to release, you want to consider your rollout plan. The context you provide to your release flags will create more or less flexibility at this stage. A typical rollout might look like:
+
+1. Enable for yourself
+2. Enable for your team
+3. Enable for E2E testing and staging
+4. Enable internal users on production
+5. Enable external users on production
+6. Delete the flag from the code
+
+You may choose to do steps 1-4 all in one day, do step 5 the next day, and step 6 anywhere from 1 to 7 days later depending on the associated risk and your observability confidence.
+
+## Rollback
+
+If something goes wrong at any stage of rollout, just revert to the most recent release flag change to the previous value. Fix the issue, then move forward in your rollout plan.
+
+## Cleanup
+
+It's **very important** to clean up release flags as soon as you can. Once you start rollout, create a PR to remove the flag and all related obsolete code. When you feel confident that a rollback won't be necessary, merge the PR. **If you don't cleanup, you will be sad.** Create a work item during planning if needed to ensure you will remove it.
+
+# FAQ
+
+## How do I test all combinations of Release and Feature Flags?
+
+You don't. Most flag states should be covered in unit testing, and for end-to-end testing, only the combinations in use are necessary to test. E2E tests should be checked when any flag changes, you should have good observability in place to warn about new errors, and you should have a way for customers to inform you of any issues they're facing. If there's any thought that a recent flag change could be the cause, you can roll back to a previous state and check if the issue is resolved.
+
+## What about this thing that's hard to add a release flag to?
+
+There are a couple of categories of changes that are hard to flag.
+
+### 1. The application/service container
+
+In this case, you may be able to move the release flag upstream to another service and provide both versions in parallel. This is similar to the recommendation for creating a code branch but applies across service boundaries
+
+### 2. Refactoring to create a good release flag scope
+
+Often the code is not factored in a way that helps create a useful scope for making changes. You can use [micro-commits](/posts/micro-commits/) and [safe-refactoring techniques](https://refactoring.guru/refactoring/techniques) to create a better scope while still keeping risk low. In the [example](/posts/release-flags/#example), the `abstract class FeatureDialog` and the services that implement it may not have existed, but adding them would be low risk if done carefully. 
+
+You should always make this kind of change as a separate PR and ask your reviewers for a high level of scrutiny. This is a judgment call for you and your code reviewers. If adding the scope you want feels too risky to do outside of a release flag, add a release flag further up the stack, refactor to create a place for a release flag, and add the release flag where you want it. Like [micro-commits](/posts/micro-commits/), you can always back up one step and make the problem smaller.
+
+### 3. Dev Tools
+
+Most dev tool changes you won't be able to flag. You can use [micro-commits](/posts/micro-commits/) to help manage risk instead
+
+## Why don't you just call these feature flags?
+
+There's often a customer use case for feature flags, that includes customers being able to enable and disable features based on their preferences. These kinds of flags are permanent and have different expectations. I find it useful to differentiate the two because they're solving different problems.
