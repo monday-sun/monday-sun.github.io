@@ -39,7 +39,7 @@ export class Post {
 
   save(): void {
     const frontMatterString = yaml.dump(this.frontMatter);
-    const fileContent = `---\n${frontMatterString}\n---\n${this.content}`;
+    const fileContent = `---\n${frontMatterString}---\n${this.content}`;
     fs.writeFileSync(this.filePath, fileContent);
   }
 }

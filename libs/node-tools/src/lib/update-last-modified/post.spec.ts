@@ -29,7 +29,7 @@ describe('Post', () => {
 
     it('should save a post', () => {
         const dumpMock = jest.spyOn(yaml, 'dump');
-        dumpMock.mockReturnValue('title: Test\nauthor: Author');
+        dumpMock.mockReturnValue('title: Test\nauthor: Author\n');
 
         const writeFileSyncMock = jest.spyOn(fs, 'writeFileSync');
 
