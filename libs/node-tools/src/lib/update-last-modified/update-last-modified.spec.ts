@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { GitFileHistory } from './git-file-history';
 import { Post } from './post';
-import { UpdateLastModified } from './update-last-modified';
+import { UpdateLastModified, lastModifedKey } from './update-last-modified';
 
 jest.mock('fs');
 jest.mock('./git-file-history');
@@ -42,12 +42,12 @@ describe('UpdateLastModified', () => {
     expect(postMock.addFrontMatter).toHaveBeenCalledTimes(2);
     expect(postMock.addFrontMatter).toHaveBeenNthCalledWith(
       1,
-      'last_modified',
+      lastModifedKey,
       '2022-01-01T00:00:00Z'
     );
     expect(postMock.addFrontMatter).toHaveBeenNthCalledWith(
       2,
-      'last_modified',
+      lastModifedKey,
       '2022-01-01T00:00:00Z'
     );
     expect(postMock.save).toHaveBeenCalledTimes(2);

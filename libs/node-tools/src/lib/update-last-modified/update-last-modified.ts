@@ -3,6 +3,8 @@ import { GitFileHistory } from './git-file-history';
 import { Post } from './post';
 import * as fs from 'fs';
 
+export const lastModifedKey = 'last_modified_at';
+
 export class UpdateLastModified {
   constructor(private postsPath: string) {}
 
@@ -11,7 +13,7 @@ export class UpdateLastModified {
     posts.forEach((post) => {
       const gitFileHistory = new GitFileHistory(post.getFilePath());
       const lastModifiedTime = gitFileHistory.getLastModifiedTime();
-      post.addFrontMatter('last_modified', lastModifiedTime);
+      post.addFrontMatter(lastModifedKey, lastModifiedTime);
       post.save();
     });
   }
