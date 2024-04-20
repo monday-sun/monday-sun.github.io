@@ -1,5 +1,3 @@
-import path = require('path');
-import { GitFileHistory } from './git-file-history';
 import { Post } from './post';
 
 export const lastModifedKey = 'last_modified_at';
@@ -7,8 +5,7 @@ export const lastModifedKey = 'last_modified_at';
 export function updatePostsLastModified(fileList: string[]): void {
   const posts = getPosts(fileList);
   posts.forEach((post) => {
-    const gitFileHistory = new GitFileHistory(post.getFilePath());
-    const lastModifiedTime = gitFileHistory.getLastModifiedTime();
+    const lastModifiedTime = post.getLastModifiedTime();
     post.addFrontMatter(lastModifedKey, lastModifiedTime);
     post.save();
   });
