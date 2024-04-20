@@ -6,6 +6,9 @@
   "repository": "git@github.com:monday-sun/monday-sun.github.io.git",
   "author": "Monday Romelfanger <monday.romelfanger@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "git config core.hooksPath hooks"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   },
