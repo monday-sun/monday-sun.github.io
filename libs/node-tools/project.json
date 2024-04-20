@@ -6,11 +6,9 @@
   "tags": [],
   "targets": {
     "install": {
-      "executor": "@nx/node:package-manager",
+      "executor": "nx:run-commands",
       "options": {
-        "command": "install",
-        "packageManager": "yarn",
-        "workingDirectory": "libs/node-tools"
+        "command": "yarn install"
       }
     },
     "build": {
