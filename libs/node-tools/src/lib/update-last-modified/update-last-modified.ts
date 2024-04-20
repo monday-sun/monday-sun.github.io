@@ -25,7 +25,7 @@ export class UpdateLastModified {
 }
 
 if (require.main === module) {
-  const postsPath = path.join(__dirname, '../../../dev-blog/_posts');
+  const postsPath = path.join(__dirname, '../../../../../dev-blog/_posts');
   const updateLastModified = new UpdateLastModified(postsPath);
   updateLastModified.updatePostsLastModified();
 }
