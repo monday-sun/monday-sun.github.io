@@ -1,6 +1,6 @@
 ---
-title: "Release Flags"
-description: "Separating Deployments from Code Changes"
+title: 'Release Flags'
+description: 'Separating Deployments from Code Changes'
 author: Monday Romelfanger
 categories: release-flags
 tags: [development-process, release-flags, feature-flags]
@@ -111,7 +111,7 @@ Let's consider a dialog component, called `FeatureDialogComponent`. We need to a
 
 ```typescript
 @Component({
-  template: ` <div>
+  template: `<div>
     <!-- existing fields -->
   </div>`,
 })
@@ -130,8 +130,7 @@ Many developers will go straight to the `Component` they want to change.
 
 ```typescript
 @Component({
-  template: `
-  <div>
+  template: `<div>
     <div [ngIf]="addNewField"></div>
     <!-- existing fields -->
   </div>`
