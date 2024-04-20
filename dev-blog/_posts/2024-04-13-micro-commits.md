@@ -8,15 +8,16 @@ tags:
   - micro-commits
 last_modified_at: '2024-04-13T18:32:18-07:00'
 ---
-# Problem
+
+## Problem
 
 As software engineers, we expect too much from our brains. We expect to be able to hold onto enough context to make new features, without breaking existing ones, rarely with enough test coverage to make sure we didn't break something. Our brains don't have as much [working capacity](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two) as we'd like to believe.
 
-# Pre-requisites
+## Pre-requisites
 
 This assumes you're using git, but you could use any other tool that allows for lots of branching, frequent commits, and preferably, squash merging.
 
-# Description
+## Description
 
 'Micro-commits' is a development process aimed at relieving your brain from holding onto so much information, with a ton of side benefits. At its core, it's easy to describe: make the absolute smallest decisions and commit to them. This process is especially great for working with any code you didn't write yourself, because it captures your learnings into the code itself.
 
@@ -68,34 +69,34 @@ These are the prefixes I use, but often see others mix up MANUAL, RISKY, and FEA
 | OOPS:    | I made a mistake previously that I need to fix                                                                                                                                   | OOPS: fix incorrect import                         |
 | FEATURE: | I changed the behavior to do something new                                                                                                                                       | FEATURE: implemented someNewBahavior               |
 
-# FAQ
+## FAQ
 
-## Do you always make commits this small?
+### Do you always make commits this small?
 
 Yes, but it took some time to adopt this process. Now it's harder to not do it -- I'm even doing it while [setting up this blog](https://github.com/monday-sun/monday-sun.github.io/pull/12/commits).
 
-## Do you really throw away and redo work?
+### Do you really throw away and redo work?
 
 All the time. In any other creative task, we make rough drafts all the time. In knitting, we use lifelines as save points that we can go back to if something goes wrong. Writing software is a creative task too, so you have to try, fail, and try again. Because I'm committing so often, I have a record of everything I did, and I use hard reset or a new branch to toss out the ideas that didn't go anywhere.
 
 Sometimes, I ignore the 15-commit limit and just go and see what happens. I'll learn a lot, and have a lot of good commits sitting in an un-reviewable branch. In that case, I make new branches and cherry-pick the good ideas, or recreate them since they're so small.
 
-## How do you stay so disciplined?
+### How do you stay so disciplined?
 
 I find this process gives me the freedom to be less disciplined. Making the process a habit is disciplined, but it gives me a lot of control over the risks associated with any change. I'm less worried about breaking things and missing tests when I know where I might have messed up. I use that to make very impactful changes in the scariest parts of a code base, including untested and un-release-flagged code.
 
-## What do I do while waiting for a code review if I didn't finish my task in 15 commits?
+### What do I do while waiting for a code review if I didn't finish my task in 15 commits?
 
 There are a couple of options here. The hardest part of continuing to make changes is dealing with the merging, especially if you have to respond to feedback.
 
-### 1. Create a new branch and follow a different thread of insight
+#### 1. Create a new branch and follow a different thread of insight
 
 Lots of tasks will have multiple threads you need to follow. If other things need changing that have minimal overlap, you can just a new branch and work on those. I'll often have 4 or so of these branches merged before having a branch that brings them all together.
 
-### 2. Create a new branch from the original branch
+#### 2. Create a new branch from the original branch
 
 If you need to keep following the same thread, or another that overlaps with the current changes, it might be easier to just branch from that branch. Once the first branch is merged, use [`git rebase --onto`](https://womanonrails.com/git-rebase-onto) to rebase onto `main`. You can also use this idea if you get too far into a new thread before you realize it.
 
-# Credit
+## Credit
 
 This process was taught to me originally as part of Arlo Belshee's [Read-by-Refactoring](https://arlobelshee.com/the-core-6-refactorings/) class at Tableau Software.
