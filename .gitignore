@@ -1,4 +1,5 @@
 
 .nx/installation
 .nx/cache
+.DS_Store
 node_modules
