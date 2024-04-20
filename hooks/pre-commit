@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# run your script
+ts-node libs/node-tools/src/lib/update-last-modified/update-last-modified.ts
+
+# add changes made by the script to the commit
+git add ./dev-blog/_posts
+
+# exit with a zero status if everything is okay
+exit 0

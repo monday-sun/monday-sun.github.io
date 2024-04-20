@@ -1,9 +1,12 @@
 ---
-title: "Micro-Commits"
-description: "Commit and forget"
+title: Micro-Commits
+description: Commit and forget
 author: Monday Romelfanger
 categories: micro-commits
-tags: [development-process, micro-commits]
+tags:
+  - development-process
+  - micro-commits
+last_modified_at: '2024-04-13T18:32:18-07:00'
 ---
 
 ## Problem

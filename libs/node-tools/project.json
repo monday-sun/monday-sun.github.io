@@ -1,0 +1,25 @@
+{
+  "name": "node-tools",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/node-tools/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn install"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/node-tools",
+        "main": "libs/node-tools/src/index.ts",
+        "tsConfig": "libs/node-tools/tsconfig.lib.json",
+        "assets": ["libs/node-tools/*.md"]
+      }
+    }
+  }
+}

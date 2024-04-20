@@ -6,6 +6,12 @@
   "sourceRoot": "dev-blog",
   "tags": [],
   "targets": {
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bundle install"
+      }
+    },
     "build": {
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/_site"],
