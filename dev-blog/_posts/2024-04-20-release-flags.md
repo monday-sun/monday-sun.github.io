@@ -1,11 +1,14 @@
 ---
-title: 'Release Flags'
-description: 'More freedom and fast recovery'
+title: Release Flags
+description: More freedom and fast recovery
 author: Monday Romelfanger
 categories: release-flags
-tags: [development-process, release-flags, feature-flags]
+tags:
+  - development-process
+  - release-flags
+  - feature-flags
+last_modified_at: ''
 ---
-
 ## Problem
 
 People make mistakes, and AI tools are built on the mistakes we make. No matter how much test validation we add pre-release, something will fall through the cracks eventually. If we shift our focus from preventing mistakes to detection and recovery, we can reduce the anxiety of changing existing code, reduce test overhead, and provide our customers with a better failure recovery.
