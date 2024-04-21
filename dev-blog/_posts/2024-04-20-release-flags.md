@@ -7,7 +7,7 @@ tags:
   - development-process
   - release-flags
   - feature-flags
-last_modified_at: ''
+last_modified_at: '2024-04-20T18:04:30-07:00'
 ---
 ## Problem
 
@@ -240,6 +240,6 @@ Most dev tool changes you won't be able to flag. You can use [micro-commits](/po
 
 ### Why should I take on this much overhead?
 
-This is a requirement for continuous deployments or it can provide a path to more frequent deployments. Deployment rollbacks tend to take a longer time to complete and involve many more people in the decision-making and execution. Rollbacks and reverting code are more time-consuming and stressful than developing a comfortable practice using release flags.
+This is necessary for continuous deployment or it can provide a path to more frequent deployments. Deployment rollbacks tend to take a longer time to complete and involve many more people in the decision-making and execution. Rollbacks and reverting code are more time-consuming and stressful than developing a comfortable practice using release flags.
 
 This process also helps create an environment where developers will feel safer to take the risks associated with refactoring or rewriting, so they can do those tasks when they're immediately helpful, rather than delaying them until they become a huge burden. At the same time, this provides boundaries to where these fixes are appropriate. It helps keep us focused on what matters right now, while also creating space for creativity and quality.
