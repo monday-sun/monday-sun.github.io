@@ -16,6 +16,7 @@
   - automate quality
   - humans still doing the engineering, ai writes code
 - Review feedback
+- Refactor vs rewrite
 - Alternate media
   - videos
   - twitch
