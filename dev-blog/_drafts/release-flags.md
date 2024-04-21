@@ -223,7 +223,7 @@ There are a few common categories of changes that are hard to flag. You should h
 
 #### 1. Application or service container
 
-If you need to change the core application or service container, you may be able to move the release flag upstream to another service and provide both versions in parallel. This is similar to the recommendation for creating a code branch but applies across service boundaries. However, this may be more costly than the time associated with rollbacks here.
+If you need to change the core application or service container, you may be able to move the release flag upstream to another service and provide both versions in parallel. This is similar to the recommendation for creating a code branch but applies across service boundaries. However, this may be more costly than the time associated with rollbacks.
 
 #### 2. Refactoring to create a good release flag scope
 
