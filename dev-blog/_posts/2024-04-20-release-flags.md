@@ -1,11 +1,14 @@
 ---
-title: 'Release Flags'
-description: 'Separating Deployments from Code Changes'
+title: Release Flags
+description: More freedom and fast recovery
 author: Monday Romelfanger
 categories: release-flags
-tags: [development-process, release-flags, feature-flags]
+tags:
+  - development-process
+  - release-flags
+  - feature-flags
+last_modified_at: '2024-04-20T18:04:30-07:00'
 ---
-
 ## Problem
 
 People make mistakes, and AI tools are built on the mistakes we make. No matter how much test validation we add pre-release, something will fall through the cracks eventually. If we shift our focus from preventing mistakes to detection and recovery, we can reduce the anxiety of changing existing code, reduce test overhead, and provide our customers with a better failure recovery.
@@ -30,7 +33,7 @@ Release flags will take the user context and a string key and determine the user
 
 #### Independently, Quickly Changeable
 
-The release flag values must be able to be changed independent of the deployment of the service they are supporting, and quickly. There as some companies that sell feature-flags-as-a-service, such as LaunchDarkly, but these could also be served in other ways, such as from a database, or an independently deployed file. Changes to flag values should be quick and easy to make by developers, product managers, and release managers.
+The release flag settings must be able to be changed independent of the deployment of the service they are supporting, and quickly. There as some companies that sell feature-flags-as-a-service, such as LaunchDarkly, but these could also be served in other ways, such as from a database, or an independently deployed file. Changes to flag values should be quick and easy to make by developers, product managers, and release managers.
 
 ## Process
 
@@ -38,12 +41,14 @@ The release flag values must be able to be changed independent of the deployment
 
 First, add your release flag. Set the default value to the 'off' value (usually false).
 
-> For Release Flags, LaunchDarkly has both On/Off and `Available (true)` / `Unavailable (false)`. By default, they create these flags with `On` -> `Available` and `Off` -> `Unavailable`. It is common for people to get tripped up when turning a LaunchDarkly flag on for the first time because you rarely want to turn it on for all users at once, and adding additional context does not automatically change the `On` default to `Unavabile`. When creating a flag you should set `On` -> `Unavailable` (and you can change the default in the project settings to `Unavailable`).
+> For release flags, LaunchDarkly has both _On_/_Off_ and _Available (true)_/_Unavailable (false)_. When creating a release flag you should set _On_ -> _Unavailable_. 
+>
+> By default, they create these flags with _On_ -> _Available_ and _Off_ -> _Unavailable_. It is common for people to get tripped up when turning a LaunchDarkly flag on for the first time because you rarely want to make it _Available_ to all users as soon as you turn the flag _On_, and adding additional context does not automatically change the _On_ default to _Unavailable_. This means you might accidentally turn it on for all users when you only meant to do it for yourself. You can change the default in the project settings to _On_ -> _Unavailable_.
 {: .prompt-warning }
 
 ### 2. Create a Code Branch
 
-Branch your code using an if/else statement. As a best practice, release flags should be used primarily in [factories](https://refactoring.guru/design-patterns/factory-method) to create a useful scope for feature development.
+Branch your code using an if/else statement. As a best practice, release flags should be used primarily in [factories](https://refactoring.guru/design-patterns/factory-method) to create a useful scope for feature development. I'll expand on creating a [useful scope](#scope-of-safety) later.
 
 ```
 if(myFeatureIsEnabled) {
@@ -77,7 +82,7 @@ Once all of your changes are in production and ready to release, you can start e
 
 #### Rollback
 
-If something goes wrong at any stage of rollout, just revert to the most recent release flag change to the previous value. Fix the issue, then move forward in your rollout plan.
+If something goes wrong at any stage of rollout, you can revert to the most recent release flag change to the previous settings. Fix the issue, then move forward in your rollout plan.
 
 ### 6. Clean up
 
@@ -94,17 +99,17 @@ An example convention might be: `{temp|perm}-{year}.{month}-{work item id}-{desc
 - work item id -- Help other engineers find the work item this feature flag was associated with. This is helpful if a flag is lingering and needs to be cleaned up later.
 - description -- A human-friendly description of what you are trying to accomplish.
 
-This would look like `temp-2024.04-jira-abc-123-cool-new-feature`
+This would look like `temp-2024.04-jira-ABC-123-cool-new-feature`
 
 ## Scope of Safety
 
-One of the most common mistakes in using both release flags and feature flags is creating the code branch inside the classes or functions you intend to change. Do not do this, it's a code smell for poor factoring and will make you hate release flags.
+One of the most common mistakes in using both release flags and feature flags is creating the code branch inside the classes or functions you intend to change. Don't do this; it's a code smell for poor factoring and will make you hate release flags.
 
 Instead, move one level up in your code and use the release flags to create a zone of safety where you can freely refactor and make any changes necessary.
 
 ### Example
 
-I'm going to use Angular 2 + RxJs in this example, but this is just intended to demonstrate a common bad practice across frameworks and languages.
+I'm going to use Angular in this example, but this applies across frameworks and languages.
 
 Let's consider a dialog component, called `FeatureDialogComponent`. We need to add a new field and include that field in the dialog submission.
 
@@ -167,7 +172,7 @@ abstract class FeatureDialog {
       useFactory: (featureFlagService: FeatureFlagService) =>
         featureFlagService.get(`temp-2024.04-jira-abc-123-cool-new-feature`)
           ? new FeatureDialogService()
-          : new OldDialogService(),
+          : new OldFeatureDialogService(),
       deps: [FeatureFlagService],
     },
   ],
@@ -201,7 +206,7 @@ class FeatureDialogService implements FeatureDialog {
 }
 ```
 
-In this setup, we're free to completely change `FeatureDialogComponent` and its supporting `FeatureDialogService` however we see fit. Creating a code branch should create a level of safety for exploration and refactoring.
+In this setup, we're free to completely change `FeatureDialogComponent` and its supporting `FeatureDialogService` however we see fit. As long as it's safe to do so, you want the new code to have the preferred name, and the old code to have a worse name. This keeps us from leaving `NewFeatureDialogComponent` in the codebase forever. Creating a code branch should create a level of safety for exploration and refactoring and leave your code in the best possible final state.
 
 Conversely, you can also make a release flag scope too large and too long-lived and make it difficult to merge other ongoing feature development. Keep your releases focused and remove old code branches.
 
@@ -213,21 +218,21 @@ You don't. Most flag states should be covered in unit testing, and for end-to-en
 
 ### Why don't you just call these feature flags?
 
-There's often a customer use case for feature flags, that includes customers being able to enable and disable features based on their preferences. These kinds of flags are permanent and have different expectations. I find it useful to differentiate the two because they're solving different problems.
+There's often a customer use case for feature flags, which includes customers being able to enable and disable features based on their preferences. These kinds of flags are permanent and have different expectations. I find it useful to differentiate the two because they're solving different problems. I would release feature flags as customer features, and use release flags to do it.
 
-### What about this thing that's hard to add a release flag to?
+### What about this code that's hard to add a release flag to?
 
-There are a couple of categories of changes that are hard to flag. You should still have a deployment rollback plan to handle mistakes here.
+There are a few common categories of changes that are hard to flag. You should have a deployment rollback plan to handle mistakes here.
 
-#### 1. The application/service container
+#### 1. Application or service container
 
-In this case, you may be able to move the release flag upstream to another service and provide both versions in parallel. This is similar to the recommendation for creating a code branch but applies across service boundaries. However, this may be too costly, so having a deployment rollback plan is still necessary.
+If you need to change the core application or service container, you may be able to move the release flag upstream to another service and provide both versions in parallel. This is similar to the recommendation for creating a code branch but applies across service boundaries. However, this may be more costly than the time associated with rollbacks.
 
 #### 2. Refactoring to create a good release flag scope
 
-Often the code is not factored in a way that helps create a useful scope for making changes. You can use [micro-commits](/posts/micro-commits/) and [safe-refactoring techniques](https://refactoring.guru/refactoring/techniques) to create a better scope while still keeping risk low. In the [example](/posts/release-flags/#example), the `abstract class FeatureDialog` and the services that implement it may not have existed, but adding them would be low risk if done carefully.
+Often the code is not factored in a way that helps create a useful scope for making changes. You can use [micro-commits](/posts/micro-commits/) and [safe-refactoring techniques](https://refactoring.guru/refactoring/techniques) to create a better scope while keeping risk low. In the [example](#example), the `abstract class FeatureDialog` and the services that implement it may not have existed, but adding them would be low risk if done carefully.
 
-You should always make this kind of change as a separate PR and ask your reviewers for a high level of scrutiny. This is a judgment call for you and your code reviewers. If adding the scope you want feels too risky to do outside of a release flag, add a release flag further up the stack, refactor to create a place for a release flag, and add the release flag where you want it. Like [micro-commits](/posts/micro-commits/), you can always back up one step and make the problem smaller.
+You should always make this kind of change as a separate PR and ask your reviewers for a high level of scrutiny. This is a judgment call for you and your code reviewers. If adding the scope you want feels too risky to do outside of a release flag, add a release flag further up the stack, refactor to create a place for a release flag, and add the release flag where you want it. You can always back up one step and choose a different problem to make your overall solution easier.
 
 #### 3. Dev Tools
 
@@ -235,6 +240,6 @@ Most dev tool changes you won't be able to flag. You can use [micro-commits](/po
 
 ### Why should I take on this much overhead?
 
-This is a requirement for continuous deployments or it may provide a path to more frequent deployments. Deployment rollbacks tend to take a longer time to complete and involve many more people in the decision-making and execution. Rollbacks and reverting code are long-term more time-consuming and stressful than developing a comfortable practice using release flags.
+This is necessary for continuous deployment or it can provide a path to more frequent deployments. Deployment rollbacks tend to take a longer time to complete and involve many more people in the decision-making and execution. Rollbacks and reverting code are more time-consuming and stressful than developing a comfortable practice using release flags.
 
-This also helps create an environment where developers will tolerate the risks associated with refactoring or rewriting, so they'll do those tasks more often, resulting in a higher-quality codebase.
+This process also helps create an environment where developers will feel safer to take the risks associated with refactoring or rewriting, so they can do those tasks when they're immediately helpful, rather than delaying them until they become a huge burden. At the same time, this provides boundaries to where these fixes are appropriate. It helps keep us focused on what matters right now, while also creating space for creativity and quality.
