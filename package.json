@@ -13,7 +13,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@nx/angular": "^18.3.2",
+    "@nx/angular": "^18.3.4",
     "@nx/eslint": "18.3.2",
     "@nx/eslint-plugin": "18.3.2",
     "@nx/jest": "18.3.2",
