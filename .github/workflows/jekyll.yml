@@ -53,26 +53,6 @@ jobs:
          test:
     runs-on: ubuntu-latest
 
-  lint:
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: yarn install
-        run: yarn install --frozen-lockfile
-
-      - name: Run lint
-        run: yarn lint
-
-  test:
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: yarn install
-        run: yarn install --frozen-lockfile
-
-      - name: Run tests
-        run: yarn test
-
   # Deployment job
   deploy:
     environment:
