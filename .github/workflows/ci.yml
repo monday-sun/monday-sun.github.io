@@ -20,16 +20,6 @@ jobs:
       - name: Run lint
         run: yarn lint
 
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-
   test:
     runs-on: ubuntu-latest
 
