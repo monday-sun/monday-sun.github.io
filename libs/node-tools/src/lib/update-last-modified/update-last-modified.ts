@@ -23,5 +23,8 @@ function getPosts(fileList: string[]): Post[] {
 if (require.main === module) {
   // Pass the files as an argument to updatePostsLastModified
   const fileList = process.argv.slice(2);
-  updatePostsLastModified(fileList);
+  const modifiedFiles = updatePostsLastModified(fileList);
+
+  // Print the modified file paths to the standard output
+  console.log(modifiedFiles.join(' '));
 }
