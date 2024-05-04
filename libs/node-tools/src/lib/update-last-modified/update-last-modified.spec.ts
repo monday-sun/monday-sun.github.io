@@ -12,9 +12,7 @@ describe('updatePostsLastModified', () => {
 
   beforeEach(() => {
     postMock = {
-      getFilePath: jest
-        .fn()
-        .mockReturnValue('../../../../../dev-blog/_posts/post1.md'),
+      getFilePath: jest.fn().mockReturnValue('dev-blog/_posts/post1.md'),
       addFrontMatter: jest.fn(),
       getLastModifiedTime: jest.fn().mockReturnValue('2022-01-01T00:00:00Z'),
       save: jest.fn(),
@@ -42,7 +40,7 @@ describe('updatePostsLastModified', () => {
       '2022-01-01T00:00:00Z'
     );
     expect(postMock.save).toHaveBeenCalledTimes(1);
-    expect(updatedFiles).toEqual(['../../../../../dev-blog/_posts/post1.md']);
+    expect(updatedFiles).toEqual(['dev-blog/_posts/post1.md']);
   });
 
   it('should parse and update last modified time of multiple posts', () => {
@@ -63,8 +61,8 @@ describe('updatePostsLastModified', () => {
 
     // post1 twice because I'm being lazy about mocking the Post class
     expect(updateFiles).toEqual([
-      '../../../../../dev-blog/_posts/post1.md',
-      '../../../../../dev-blog/_posts/post1.md',
+      'dev-blog/_posts/post1.md',
+      'dev-blog/_posts/post1.md',
     ]);
   });
 });
