@@ -29,11 +29,12 @@ describe('updatePostsLastModified', () => {
   });
 
   it('should parse and update last modified time of a single post', () => {
-    updatePostsLastModified(['dev-blog/_posts/post1.md', 'other-file.md']);
+    const updatedFiles = updatePostsLastModified([
+      'dev-blog/_posts/post1.md',
+      'other-file.md',
+    ]);
 
-    expect(parseMock).toHaveBeenCalledWith(
-      '../../../../../dev-blog/_posts/post1.md'
-    );
+    expect(parseMock).toHaveBeenCalledWith('dev-blog/_posts/post1.md');
     expect(postMock.getLastModifiedTime).toHaveBeenCalledTimes(1);
     expect(postMock.addFrontMatter).toHaveBeenCalledTimes(1);
     expect(postMock.addFrontMatter).toHaveBeenCalledWith(
@@ -41,20 +42,17 @@ describe('updatePostsLastModified', () => {
       '2022-01-01T00:00:00Z'
     );
     expect(postMock.save).toHaveBeenCalledTimes(1);
+    expect(updatedFiles).toEqual(['../../../../../dev-blog/_posts/post1.md']);
   });
 
   it('should parse and update last modified time of multiple posts', () => {
-    updatePostsLastModified([
+    const updateFiles = updatePostsLastModified([
       'dev-blog/_posts/post1.md',
       'dev-blog/_posts/post2.md',
     ]);
 
-    expect(parseMock).toHaveBeenCalledWith(
-      '../../../../../dev-blog/_posts/post1.md'
-    );
-    expect(parseMock).toHaveBeenCalledWith(
-      '../../../../../dev-blog/_posts/post2.md'
-    );
+    expect(parseMock).toHaveBeenCalledWith('dev-blog/_posts/post1.md');
+    expect(parseMock).toHaveBeenCalledWith('dev-blog/_posts/post2.md');
     expect(postMock.getLastModifiedTime).toHaveBeenCalledTimes(2);
     expect(postMock.addFrontMatter).toHaveBeenCalledTimes(2);
     expect(postMock.addFrontMatter).toHaveBeenCalledWith(
@@ -62,5 +60,11 @@ describe('updatePostsLastModified', () => {
       '2022-01-01T00:00:00Z'
     );
     expect(postMock.save).toHaveBeenCalledTimes(2);
+
+    // post1 twice because I'm being lazy about mocking the Post class
+    expect(updateFiles).toEqual([
+      '../../../../../dev-blog/_posts/post1.md',
+      '../../../../../dev-blog/_posts/post1.md',
+    ]);
   });
 });

@@ -2,13 +2,16 @@ import { Post } from './post';
 
 export const lastModifedKey = 'last_modified_at';
 
-export function updatePostsLastModified(fileList: string[]): void {
+export function updatePostsLastModified(fileList: string[]): string[] {
+  const modifiedPostPaths: string[] = [];
   const posts = getPosts(fileList);
   posts.forEach((post) => {
     const lastModifiedTime = post.getLastModifiedTime();
     post.addFrontMatter(lastModifedKey, lastModifiedTime);
     post.save();
+    modifiedPostPaths.push(post.getFilePath());
   });
+  return modifiedPostPaths;
 }
 
 function getPosts(fileList: string[]): Post[] {
