@@ -4,7 +4,7 @@ import * as yaml from 'js-yaml';
 import { Post } from './post';
 
 jest.mock('fs');
-jest.mock('yaml');
+jest.mock('js-yaml');
 
 describe('Post', () => {
   it('should parse a post', () => {
