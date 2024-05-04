@@ -13,10 +13,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@eslint/js": "^9.2.0",
-    "@swc-node/register": "~1.8.0",
-    "@swc/core": "~1.3.85",
-    "@swc/helpers": "~0.5.2",
     "@types/jest": "^29.4.0",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.12.7",
