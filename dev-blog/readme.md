@@ -10,19 +10,19 @@ The project has several commands defined in the targets section of the configura
 Install
 To install the necessary dependencies for this project, run the following command:
 
-`nx run dev-blog:install`
+`bundle install`
 
 Build
 To build the project, run the following command:
 
-`nx run dev-blog:build`
+`bundle exec jekyll build --baseurl https://monday-sun.github.io`
 
 Serve Drafts
 To serve the project with drafts, run the following command:
 
-`nx run dev-blog:serve-drafts`
+`bundle exec jekyll serve --drafts`
 
 Serve
 To serve the project, run the following command:
 
-`nx run dev-blog:serve`
+`bundle exec jekyll serve`
