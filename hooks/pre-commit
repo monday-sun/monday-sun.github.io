@@ -3,10 +3,12 @@
 # run your script
 files=$(git diff --cached --name-only)
 
-ts-node libs/node-tools/src/lib/update-last-modified/update-last-modified.ts "$files"
+
+
+changed_files=$(ts-node libs/node-tools/src/lib/update-last-modified/update-last-modified.ts "$files")
 
 # add changes made by the script to the commit
-git add ./dev-blog/_posts
+git add $changed_files
 
 # exit with a zero status if everything is okay
 exit 0
