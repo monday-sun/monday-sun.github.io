@@ -7,7 +7,7 @@ tags:
   - development-process
   - quality-automation
   - testing
-last_modified_at: ''
+last_modified_at: '2024-05-04T15:46:49-07:00'
 ---
 Developing software requires remembering many tiny details that are easy to forget, deprioritize, or miss in the deluge of information we face daily. Given all these details, we generally agree that the way to prevent quality issues for our customers is to write automated tests to reduce the likelihood of forgetting details and alleviate manual testing. We also consider code quality as a factor in how likely we are to introduce customer defects. However, we often overlook that we can also prevent code-quality issues by writing tests.
 
