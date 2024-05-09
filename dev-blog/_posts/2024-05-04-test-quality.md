@@ -2,13 +2,15 @@
 title: Write Tests for Code Quality (and use AI to do it)
 description: The only real quality is automated quality
 author: Monday Romelfanger
-categories: release-flags
+categories: quality
 tags:
+  - quality
   - development-process
   - quality-automation
   - testing
 last_modified_at: '2024-05-04T15:46:49-07:00'
 ---
+
 Developing software requires remembering many tiny details that are easy to forget, deprioritize, or miss in the deluge of information we face daily. Given all these details, we generally agree that the way to prevent quality issues for our customers is to write automated tests to reduce the likelihood of forgetting details and alleviate manual testing. We also consider code quality as a factor in how likely we are to introduce customer defects. However, we often overlook that we can also prevent code-quality issues by writing tests.
 
 When we automate code quality, we remove the burden of remembering quality details from developers, reduce onboarding costs, and maintain more consistent quality across a code base.
