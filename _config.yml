@@ -40,11 +40,19 @@ social:
     - https://github.com/monday-sun
     - https://www.linkedin.com/in/monday-romelfanger-3893652b/
 
-google_site_verification: # fill in to your verification string
+# Site Verification Settings
+webmaster_verifications:
+  google: # fill in your Google verification code
+  bing: # fill in your Bing verification code
+  alexa: # fill in your Alexa verification code
+  yandex: # fill in your Yandex verification code
+  baidu: # fill in your Baidu verification code
+  facebook: # fill in your Facebook verification code
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
+# Web Analytics Settings
 analytics:
   google:
     id: G-MDY6224QC5
@@ -72,12 +80,12 @@ analytics:
 #
 theme_mode: # [light | dark]
 
-# The CDN endpoint for images.
+# The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
-# will be added to all image (site avatar & posts' images) paths starting with '/'
+# will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn:
+cdn:
 
 # the avatar on sidebar, support local or CORS resources
 avatar: https://avatars.githubusercontent.com/u/2709347
@@ -98,7 +106,7 @@ comments:
   # utterances settings › https://utteranc.es/
   utterances:
     repo: # <gh-username>/<repo>
-    issue_term: # < url | pathname | title | ...>  
+    issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
     repo: monday-sun/monday-sun.github.io
@@ -107,6 +115,7 @@ comments:
     category_id: "DIC_kwDOLlY4Ws4CeyNZ"
     mapping: url
     mapping: # optional, default to 'pathname'
+    strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
     reactions_enabled: # optional, default to the value of `1`
@@ -132,11 +141,12 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: ''
 
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
+  footnote_backlink:
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
@@ -154,7 +164,7 @@ collections:
 
 defaults:
   - scope:
-      path: "" # An empty string here means all files in the project
+      path: '' # An empty string here means all files in the project
       type: posts
     values:
       layout: post
@@ -168,7 +178,7 @@ defaults:
     values:
       comments: false
   - scope:
-      path: ""
+      path: ''
       type: tabs # see `site.collections`
     values:
       layout: page
@@ -191,15 +201,14 @@ compress_html:
     envs: [development]
 
 exclude:
-  - "*.gem"
-  - "*.gemspec"
+  - '*.gem'
+  - '*.gemspec'
   - docs
   - tools
   - README.md
   - LICENSE
-  - rollup.config.js
+  - '*.config.js'
   - package*.json
-  - project.json
 
 jekyll-archives:
   enabled: [categories, tags]
