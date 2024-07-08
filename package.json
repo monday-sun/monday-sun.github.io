@@ -15,7 +15,7 @@
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.14.10",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.13.1",
     "date-fns": "^3.6.0",
