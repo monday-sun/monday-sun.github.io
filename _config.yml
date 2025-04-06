@@ -222,3 +222,7 @@ jekyll-archives:
 feed:
   posts_limit: 10
   excerpt_only: false
+
+# Add plugins
+plugins:
+  - jekyll-feed
