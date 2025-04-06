@@ -218,3 +218,7 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+feed:
+  posts_limit: 10
+  excerpt_only: false
