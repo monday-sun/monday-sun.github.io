@@ -24,7 +24,7 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://monday-sun.github.io"
+url: 'https://monday-sun.github.io'
 
 github:
   username: monday-sun # change to your github username
@@ -110,11 +110,10 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: monday-sun/monday-sun.github.io
-    repo_id: "R_kgDOLlY4Wg"
-    category: "Post Comments"
-    category_id: "DIC_kwDOLlY4Ws4CeyNZ"
+    repo_id: 'R_kgDOLlY4Wg'
+    category: 'Post Comments'
+    category_id: 'DIC_kwDOLlY4Ws4CeyNZ'
     mapping: url
-    mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
     lang: # optional, default to the value of `site.lang`
